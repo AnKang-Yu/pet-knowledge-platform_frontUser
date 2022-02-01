@@ -146,6 +146,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/ucenter/login-page/register/register",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "用户注册",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

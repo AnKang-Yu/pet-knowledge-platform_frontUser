@@ -11,7 +11,8 @@ const whiteList = [
 	'/pages/ucenter/ucenter',
 	// 宠物救助
 	'/pages/pet-rescue/pet-rescue',
-	{"pattern":/^\/pages\/pet-rescue\/stray-pet-detail\/stray-pet-detail\?petId=[0-9]*/}
+	{"pattern":/^\/pages\/pet-rescue\/stray-pet-detail\/stray-pet-detail\?petId=[0-9]*/},
+	'/pages/ucenter/login-page/register/register'
 ]
 
 function hasPermission (url) {

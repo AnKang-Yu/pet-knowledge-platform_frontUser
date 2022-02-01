@@ -14,13 +14,19 @@
 				<view>
 					<label>手机号</label> 
 				</view>
-				<view><input :disabled="!editPermission" v-model="currentUserInfo.userPhone"  type="text" :placeholder="editPermission?'请输入手机号':''" /></view>
+				<view>
+					<input v-if="!editPermission" :disabled="!editPermission" v-model="currentUserInfo.userMaskPhone"  type="text" placeholder=""/>
+					<input v-else  v-model="currentUserInfo.userPhone"  type="text" placeholder="请输入手机号" />
+				</view>
 			</view>
 			<view class="form-item">
 				<view>
 					<label>邮箱</label> 
 				</view>
-				<view><input :disabled="!editPermission" v-model="currentUserInfo.userEmail"  type="text" :placeholder="editPermission?'请输入邮箱':''" /></view>
+				<view>
+					<input v-if="!editPermission" :disabled="!editPermission" v-model="currentUserInfo.userMaskEmail"  type="text" placeholder=""/>
+					<input v-else  v-model="currentUserInfo.userEmail"  type="text" placeholder="请输入邮箱" />
+				</view>
 			</view>
 			<view class="form-item">
 				<view>
@@ -68,6 +74,7 @@
 			return {
 				editPermission: false,
 				currentUserInfo:{
+					
 				}
 			}
 		},
@@ -125,6 +132,7 @@
 				this.editPermission = true
 			},
 			async updateUserInfo(){
+				// this.currentUserInfo.userId = uni.getStorageSync('userId')
 				console.log(this.currentUserInfo)
 				const res = await this.$myRequest({
 					url: "/api/update/editCurrentUserInfo",

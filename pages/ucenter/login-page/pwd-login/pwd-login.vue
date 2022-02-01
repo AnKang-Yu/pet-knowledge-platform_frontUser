@@ -53,7 +53,7 @@
 					url: "/admin/info",
 				})
 				console.log(userinfo)
-				uni.setStorageSync('name', userinfo.data.data.name)
+				uni.setStorageSync('name', userinfo.data.data.useraccount)
 				uni.setStorageSync('userId',userinfo.data.data.userId)
 				
 				uni.showToast({
@@ -68,6 +68,11 @@
 						},2000);
 					}
 				});
+			},
+			toRegister(){
+				uni.navigateTo({
+					url: `/pages/ucenter/login-page/register/register`
+				})
 			}
 		}
 	}
