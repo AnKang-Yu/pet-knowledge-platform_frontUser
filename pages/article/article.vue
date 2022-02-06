@@ -1,12 +1,13 @@
 <template>
 	<view class="warp">
+		<u-notice-bar :text="notice"></u-notice-bar>
 		<uni-section title="文章分类" type="line" padding>
 			<uni-grid :column="3" :show-border="false" :square="false" @change="changeArticleCategory">
 				<uni-grid-item v-for="(item ,index) in list" :index="index" :key="index">
 					<view class="grid-item-box">
 						<text class="text">{{item.text}}</text>
-						<view v-if="item.badge" class="grid-dot">
-							<uni-badge :text="item.badge" type="success" />
+						<view v-if="item.value" class="grid-dot">
+							<uni-badge :text="item.value" type="success" />
 						</view>
 					</view>
 				</uni-grid-item>
@@ -14,7 +15,7 @@
 		</uni-section>
 		
 		<template>
-			<uni-section title="文章列表" type="line" padding>
+			<uni-section :title="listTitle" type="line" padding>
 			<view class="article">
 				<article-item :list="articleList" @itemClick="goDetail"></article-item>
 				
@@ -33,37 +34,34 @@
 	export default {
 		data() {
 			return {
+				notice: '《中华人民共和国民法通则》第一百二十七条规定：“饲养的动物造成他人损害的，动物饲养人或者管理人应当承担民事责任。”',
 				currentPage: 1,
-				categoryId: '90',
+				categoryId: '89',
 				articleList: [],
 				flag: true,
-				list: [{
-						categoryId: '90',
-						text: '养宠记录',
-						badge: '0'
-					},
-					{
-						categoryId: '89',
-						text: '饲养经验',
-						badge: '1'
-					},
-					{
-						categoryId: '91',
-						text: '爱心救助',
-						badge: '99'
-					}
-				]
+				list: [],
+				listTitle: '饲养经验列表'
 			}
 		},
 		onLoad() {
+			this.initData()
 			this.getArticleList()
 		},
 		methods: {
+			async initData(){
+				const res = await this.$myRequest({
+					url: "/api/search/statisticsToArticle",
+					method: "GET"
+				})
+				console.log(res)
+				this.list = JSON.parse(JSON.stringify(res.data.data))
+			},
 			changeArticleCategory(e){
 				let {
 					index
 				} = e.detail
 				this.categoryId =  this.list[index].categoryId
+				this.listTitle = this.list[index].text + '列表'
 				this.currentPage = 1
 				this.articleList = []
 				this.getArticleList()

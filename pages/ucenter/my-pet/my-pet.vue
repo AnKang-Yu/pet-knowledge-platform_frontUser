@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<u-notice-bar :text="notice"></u-notice-bar>
 		<view class="pet_item"  v-for="item in petList" :key="item.petId">
 			<!-- 左侧图片 -->
 			<image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp2.itc.cn%2Fimages01%2F20210725%2F93fcfa39eb294e42863ea89cca3b4fef.jpeg&refer=http%3A%2F%2Fp2.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1641026583&t=1b2b2e79e7c74332cdf969c59cb9d3ab"></image>
@@ -49,6 +50,7 @@
 			return {
 				// popupTitle: '',
 				// operationPetId: '',
+				notice: '《动物防疫法》第三十条规定: “单位和个人饲养犬只，应当按照规定定期免疫接种狂犬病疫苗，凭动物诊疗机构出具的免疫证明向所在地养犬登记机关申请登记。携带犬只出户的，应当按照规定佩戴犬牌并采取系犬绳等措施，防止犬只伤人、疫病传播。”',
 				currentPage: 1,
 				petList: [],
 				flag: false,

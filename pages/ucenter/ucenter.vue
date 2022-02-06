@@ -1,7 +1,9 @@
 <template>
 	<view class="center">
+		<u-notice-bar :text="notice"></u-notice-bar>
 		<view class="userInfo" @click.capture="toUserInfo">
-			<image class="logo-img" src="@/static/uni-center/defaultAvatarUrl.png"></image>
+			<u-avatar  v-if="avatar_file" :src="avatar_file" shape="square" size="60"></u-avatar>
+			<image v-else class="logo-img" src="@/static/uni-center/defaultAvatarUrl.png"></image>
 			<view class="logo-title">
 				<text class="uer-name" > {{name}}</text>
 				
@@ -30,6 +32,8 @@
 			return {
 				title: 'Hello',
 				name: '',
+				avatar_file: '',
+				notice: '《中华人民共和国治安管理处罚法》第七十五条规定：“饲养动物，干扰他人正常生活的，处警告；警告后不改正的，或者放任动物恐吓他人的，处200元以上500元以下罚款。”',
 				ucenterList: [
 					[	{
 							"title":'我的宠物',
@@ -62,17 +66,20 @@
 						"icon": "chat"
 					},{
 						"title": '我的文章',
-						"to": '/pages/ucenter/my-article/my-article',
+						"to": '/pages/ucenter/my-article/my-article?articleStatus=96',
 						"icon": "help"
-					}, {
-						"title": '文章收藏',
-						"to": '/pages/ucenter/settings/settings',
-						"icon": "gear"
-					},{
+					}, 
+					// {
+					// 	"title": '文章收藏',
+					// 	"to": '/pages/ucenter/settings/settings',
+					// 	"icon": "gear"
+					// },
+					{
 						"title": '文章申请记录',
-						"to": '/pages/ucenter/my-article-record/my-article-record',
+						"to": '/pages/ucenter/article-record/article-record',
 						"icon": "info"
-					}]
+					},
+					]
 				],
 			}
 		},
@@ -96,7 +103,9 @@
 		},
 		onShow:function(){
 			this.name = uni.getStorageSync('name') || '未登录'
-			console.log('name='+ this.name)
+			// console.log('name='+ this.name)
+			this.avatar_file = uni.getStorageSync('avatar')
+			console.log(this.avatar_file)
 			console.log("index show")
 		},
 		onReady:function(){
@@ -144,8 +153,8 @@
 		background-color: #f8f8f8;
 		.userInfo {
 			width: 750rpx;
-			padding: 20rpx;
-			padding-top: 50px;
+			// padding: 20rpx;
+			padding-top: 30px;
 			background-image: url(../../static/uni-center/headers.png);
 			flex-direction: column;
 			align-items: center;

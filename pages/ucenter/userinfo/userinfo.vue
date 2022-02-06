@@ -4,6 +4,16 @@
 		<view class="form">
 			<view class="form-item">
 				<view>
+					<label>头像</label> 
+				</view>
+				<view>
+					<u-avatar @click="uploadAvatarImg"  v-if="avatar_file" :src="avatar_file" shape="square" size="40" ></u-avatar>
+					<u-avatar @click="uploadAvatarImg" v-else src="/static/uni-center/defaultAvatarUrl.png" shape="square" size="40"></u-avatar>
+					
+				</view>	
+			</view>
+			<view class="form-item">
+				<view>
 					<label>账户名</label> 
 				</view>
 				<view>
@@ -64,6 +74,7 @@
 		<view v-else class="bottom-back" @click="updateUserInfo">
 			<text class="bottom-back-text" >保存</text>
 		</view>
+		
 	</view>
 	
 </template>
@@ -75,7 +86,8 @@
 				editPermission: false,
 				currentUserInfo:{
 					
-				}
+				},
+				avatar_file:''
 			}
 		},
 		// 页面生命周期
@@ -104,6 +116,8 @@
 				console.log(res)
 				this.currentUserInfo = res.data.data
 				console.log(this.currentUserInfo)
+				this.avatar_file = uni.getStorageSync('avatar')
+				console.log(this.avatar_file)
 			},
 			async clickLogout(){
 				console.log('退出')
@@ -115,6 +129,7 @@
 				uni.removeStorageSync('name')
 				uni.removeStorageSync('token')
 				uni.removeStorageSync('userId')
+				uni.removeStorageSync('avatar')
 				uni.showToast({
 					title: res.data.msg,
 					duration: 2000,
@@ -151,6 +166,23 @@
 						},2000);
 					}
 				});
+			},
+			uploadAvatarImg(res) {
+				const crop = {
+					quality: 100,
+					width: 600,
+					height: 600,
+					resize: true
+				};
+				uni.chooseImage({
+					count: 1,
+					crop,
+					success: async (res) => {
+						console.log(res);
+						this.avatar_file = res.tempFilePaths[0]
+						uni.setStorageSync('avatar',this.avatar_file )
+					}
+				})
 			}
 		}
 	}

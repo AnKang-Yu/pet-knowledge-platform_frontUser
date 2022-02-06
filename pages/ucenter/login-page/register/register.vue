@@ -117,7 +117,7 @@
 				<u-button
 					slot="right"
 					@tap="getCode"
-					text="获取验证码"
+					:text="codeText"
 					size="mini"
 					:disabled="!canCode"
 					:type="canCode?'primary':'default'"
@@ -208,7 +208,20 @@
 				callback()
 			  }
 			}
+			var validatePhone = (rule, value, callback) => {
+			  // 可以为空
+			      if (!value) {
+			        callback()
+			      }
+			      const reg = /^1[3|4|5|7|8][0-9]{9}$/
+			      if (!reg.test(value)) {
+			        callback(new Error('手机格式错误'))
+			      } else {
+			        callback()
+			      }
+			}
 			return {
+				codeText: '获取验证码',
 				showBirthday: false,
 				showSex: false,
 				startDate: ``,
@@ -254,6 +267,11 @@
 					// 	trigger: ["change", "blur"],
 					// },
 					],
+					'userInfo.userPhone': [{
+						type: 'string',
+						validator: validatePhone,
+						trigger: ['blur', 'change']
+					}], 
 					'userInfo.userPassword': [{
 					  required: true, validator: validatePass, trigger: 'blur'
 					}],
@@ -371,15 +389,15 @@
 				});
 				uni.showToast({
 					title: result.data.msg,
-					duration: 2000
-					// success:function(){
-					// 	// 跳转到列表页
-					// 	setTimeout(() => {
-					// 		uni.switchTab({
-					// 			url: "/pages/index/index"
-					// 		})
-					// 	},2000);
-					// }
+					duration: 2000,
+					success:function(){
+						// 跳转到登录页
+						setTimeout(() => {
+							uni.reLaunch({
+								url: '/pages/ucenter/login-page/pwd-login/pwd-login'
+							})
+						},2000);
+					}
 				})
 			},
 			async getCode(){

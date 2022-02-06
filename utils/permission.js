@@ -12,7 +12,8 @@ const whiteList = [
 	// 宠物救助
 	'/pages/pet-rescue/pet-rescue',
 	{"pattern":/^\/pages\/pet-rescue\/stray-pet-detail\/stray-pet-detail\?petId=[0-9]*/},
-	'/pages/ucenter/login-page/register/register'
+	'/pages/ucenter/login-page/register/register',
+	'/pages/ucenter/login-page/retrieve-pwd/retrieve-pwd'
 ]
 
 function hasPermission (url) {

@@ -9,6 +9,7 @@
 		<!-- 忘记密码 -->
 		<view class="auth-box">
 			<text class="link" @click="toRetrievePwd">忘记密码</text>
+			
 			<text class="link" @click="toRegister">注册账户</text>
 		</view>
 	</view>
@@ -55,7 +56,7 @@
 				console.log(userinfo)
 				uni.setStorageSync('name', userinfo.data.data.useraccount)
 				uni.setStorageSync('userId',userinfo.data.data.userId)
-				
+				uni.setStorageSync('avatar','/static/uni-center/userAvatar.png')
 				uni.showToast({
 					title: res.data.msg,
 					duration: 2000,
@@ -72,6 +73,11 @@
 			toRegister(){
 				uni.navigateTo({
 					url: `/pages/ucenter/login-page/register/register`
+				})
+			},
+			toRetrievePwd(){
+				uni.navigateTo({
+					url: `/pages/ucenter/login-page/retrieve-pwd/retrieve-pwd`
 				})
 			}
 		}

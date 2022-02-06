@@ -1,12 +1,15 @@
 <template>
 	<view>
 		<view>
-			<u-steps :current="current">
+			<u-steps :current="current"  v-if="form.formStatus > '104'">
+					<u-steps-item title="发送审批" :desc="form.createTime | formatDay"></u-steps-item>
+					<u-steps-item   error  :title="form.formStatusName" :desc="form.updateTime | formatDay"></u-steps-item>
+					<u-steps-item  :title="form.formTypeName + '处理'" ></u-steps-item>
+			</u-steps>
+			<u-steps :current="current"  v-else>
 				<u-steps-item title="发送审批" :desc="form.createTime | formatDay"></u-steps-item>
-				
-				<u-steps-item  v-if="form.formStatus > '104'" error  :title="form.formStatusName" :desc="form.updateTime | formatDay"></u-steps-item>
-				<u-steps-item  v-else  :title="form.formStatusName" :desc="form.auditTime | formatDay"></u-steps-item>
-				<u-steps-item :title="form.formTypeName + '处理'" ></u-steps-item>
+				<u-steps-item   :title="form.formStatusName" :desc="form.auditTime | formatDay"></u-steps-item>
+				<u-steps-item  :title="form.formTypeName + '处理'" ></u-steps-item>
 			</u-steps>
 		</view>
 		<!-- 绑定宠物表单 -->
@@ -100,7 +103,9 @@
 			if(this.form.formStatus == '104'){
 				this.current = 2;
 			}
-			console.log(this.form)
+			
+			console.log(this.form.formStatus)
+			console.log(this.current)
 			this.petModel.petId = this.form.petId
 			this.getPetDetailInfo()
 		},

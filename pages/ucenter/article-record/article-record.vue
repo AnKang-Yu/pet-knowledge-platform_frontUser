@@ -7,17 +7,7 @@
 				<u-divider color="#909399" half-width="200" border-color="#dcdfe6" text="到底了"></u-divider>
 			</view>
 		</template>
-		<template >
-			<!-- 新增按钮 -->
-		    <view>
-		        <uni-fab
-		            horizontal="right"
-		            vertical="bottom"
-		            :popMenu="false"
-					@fabClick="addPensonalArticle"
-		        ></uni-fab>
-		    </view>
-		</template>
+		
 	</view>
 </template>
 
@@ -32,10 +22,7 @@
 		// 页面生命周期
 		onLoad(options) {
 			// console.log('页面加载')
-			if(options.articleStatus){
-				this.articleStatus = options.articleStatus
-				console.log(this.articleStatus)
-			}
+			
 			this.getPersonalArticleList()
 		},
 		onShow:function(){
@@ -65,24 +52,8 @@
 			// 子页面触发@itemClick即跳转详情页面
 			goDetail(articleId){
 				console.log(articleId)
-				if(this.articleStatus == '93'){
-					// 草稿箱点击详情(可修改)
-					uni.navigateTo({
-						url: "/pages/ucenter/my-article/addoredit-article/addoredit-article?articleId=" + articleId 
-					})
-					
-				}else{
-					// 我的文章点击详情(不可修改)
-					uni.navigateTo({
-						url: "/pages/article/article-detail/article-detail?articleId=" + articleId
-					})
-				}
-				
-			},
-			addPensonalArticle(){
-				console.log('添加文章')
 				uni.navigateTo({
-					url: "/pages/ucenter/my-article/addoredit-article/addoredit-article" 
+					url: "/pages/ucenter/article-record/article-record-detail/article-record-detail?articleId=" + articleId 
 				})
 			}
 		}
