@@ -58,7 +58,7 @@
 						// 跳转到列表页
 						setTimeout(() => {
 							uni.switchTab({
-								url: "/pages/index/index"
+								url: "/pages/ucenter/ucenter"
 							})
 						},2000);
 					}

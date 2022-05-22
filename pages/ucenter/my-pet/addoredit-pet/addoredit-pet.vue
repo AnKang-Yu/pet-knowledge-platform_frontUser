@@ -322,9 +322,18 @@
 				console.log(res)
 				if(res && res.data.code == 200){
 					// 跳转到列表页
-					uni.navigateTo({
-						url: "/pages/ucenter/my-pet/my-pet"
-					})
+					uni.showToast({
+						title: res.data.msg,
+						duration: 2000,
+						success:function(){
+							// 跳转到列表页
+							setTimeout(() => {
+								uni.switchTab({
+									url: "/pages/ucenter/ucenter"
+								})
+							},2000);
+						}
+					});
 				}
 				
 			}

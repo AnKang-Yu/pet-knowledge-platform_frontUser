@@ -243,11 +243,11 @@
 			 * @param {Object} e
 			 */
 			bindTextAreaInput(e){
-				console.log(e)
+				// console.log(e)
 				this.articleInfo.articleFormatContent  = e.detail.html
-				console.log(this.articleInfo.articleFormatContent)
+				// console.log(this.articleInfo.articleFormatContent)
 				this.articleInfo.articleOriginalContent  = e.detail.text
-				console.log(this.articleInfo.articleOriginalContent)
+				// console.log(this.articleInfo.articleOriginalContent)
 			},
 			
 			readOnlyChange() {
@@ -314,7 +314,7 @@
 						// 跳转到列表页
 						setTimeout(() => {
 							uni.switchTab({
-								url: "/pages/index/index"
+								url: "/pages/ucenter/ucenter"
 							})
 						},2000);
 					}

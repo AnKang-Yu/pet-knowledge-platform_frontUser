@@ -7,7 +7,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页"
 			}
 		}
 		,{
@@ -68,20 +68,11 @@
 	        "path" : "pages/ucenter/my-pet/addoredit-pet/addoredit-pet",
 	        "style" :                                                                                    
 	        {
-	            "navigationBarTitleText": "",
+	            "navigationBarTitleText": "宠物设置",
 	            "enablePullDownRefresh": false
 	        }
 	        
 	    }
-	    ,{
-            "path" : "pages/test/linkage",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
         ,{
             "path" : "pages/pet-rescue/pet-rescue",
             "style" :                                                                                    
@@ -140,7 +131,7 @@
             "path" : "pages/ucenter/my-article/addoredit-article/addoredit-article",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "文章",
+                "navigationBarTitleText": "文章设置",
                 "enablePullDownRefresh": false
 				
             }
@@ -160,7 +151,7 @@
             "path" : "pages/ucenter/article-record/article-record",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "文章记录",
                 "enablePullDownRefresh": false
             }
             
@@ -169,7 +160,7 @@
             "path" : "pages/ucenter/article-record/article-record-detail/article-record-detail",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "文章记录详情",
                 "enablePullDownRefresh": false
             }
             
@@ -178,7 +169,7 @@
             "path" : "pages/ucenter/login-page/retrieve-pwd/retrieve-pwd",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "重新设置密码",
                 "enablePullDownRefresh": false
             }
             
@@ -211,10 +202,6 @@
 				"pagePath": "pages/ucenter/ucenter",
 				"iconPath":"static/icon/me.png",
 				"selectedIconPath":"static/icon/me_active.png"
-			},
-			{
-				"text": "测试",
-				"pagePath":"pages/test/linkage"
 			}
 		]
 	}
