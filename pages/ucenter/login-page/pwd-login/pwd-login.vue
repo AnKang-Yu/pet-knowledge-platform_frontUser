@@ -40,7 +40,7 @@
 			 */
 			async pwdLogin() {
 				const res = await this.$myRequest({
-					url: "/admin/login",
+					url: "/api/login",
 					method: "POST",
 					data: {
 						username : this.username,
@@ -51,7 +51,7 @@
 				uni.setStorageSync('token', res.data.data.token)
 				
 				const userinfo = await this.$myRequest({
-					url: "/admin/info",
+					url: "/api/getUserInfo",
 				})
 				console.log(userinfo)
 				uni.setStorageSync('name', userinfo.data.data.useraccount)

@@ -12,14 +12,14 @@
 		>
 			<u-form-item
 				label="用户名"
-				prop="userInfo.userName"
+				prop="userInfo.username"
 				labelWidth="80"
 				borderBottom
 				ref="item1"
 				required="true"
 			>
 				<u--input
-					v-model="userModel.userInfo.userName"
+					v-model="userModel.userInfo.username"
 					border="none"
 					placeholder="请输入用户名"
 				></u--input>
@@ -241,7 +241,7 @@
 					verificationCode: '',
 					checkPass: '',
 					userInfo:{
-						userName: '',
+						username: '',
 						userSex: '',
 						userPassword: '',
 						userEmail: '',
@@ -250,7 +250,7 @@
 					},
 				},
 				rules: {
-					'userInfo.userName': [{
+					'userInfo.username': [{
 						type: 'string',
 						required: true,
 						message: '请填写用户名',
@@ -304,7 +304,7 @@
 		computed:{
 			// 注册按钮
 			canRegister() {
-				return this.userModel.userInfo.userName.length && this.isPwd;
+				return this.userModel.userInfo.username.length && this.isPwd;
 			},
 			isPwd() {
 				return /^.{6,20}$/.test(this.userModel.userInfo.userPassword);
@@ -368,7 +368,7 @@
 				})
 			},
 			reset() {
-				const validateList = ['userInfo.userName', 'userInfo.userSex',
+				const validateList = ['userInfo.username', 'userInfo.userSex',
 				'userInfo.userBirthday']
 				this.$refs.userForm.resetFields()
 				this.$refs.userForm.clearValidate()

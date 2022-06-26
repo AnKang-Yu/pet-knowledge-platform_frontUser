@@ -122,7 +122,7 @@
 			async clickLogout(){
 				console.log('退出')
 				const res = await this.$myRequest({
-					url: "/admin/logout",
+					url: "/logout",
 					method: "POST"
 				})
 				

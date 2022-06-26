@@ -8,7 +8,7 @@
 		>
 			<u-form-item
 				label="用户名"
-				prop="userInfo.userName"
+				prop="userInfo.username"
 				labelWidth="80"
 				borderBottom
 				ref="item1"
@@ -16,9 +16,9 @@
 				required="true"
 			>
 				<u--input
-					v-model="userModel.userInfo.userName"
+					v-model="userModel.userInfo.username"
 					border="none"
-					:disabled = "!canInputUserName"
+					:disabled = "!canInputUsername"
 					placeholder="请输入要找回的用户名"
 				></u--input>
 			</u-form-item>
@@ -37,7 +37,7 @@
 				></u--input>
 				<u-button
 					slot="right"
-					@tap="estimateUserByUserName"
+					@tap="estimateUserByUsername"
 					:text="codeText"
 					size="mini"
 					:disabled="!canCode"
@@ -114,7 +114,7 @@
 					verificationCode: '',
 					checkPass: '',
 					userInfo:{
-						userName: '',
+						username: '',
 						userSex: '',
 						userPassword: '',
 						userEmail: '',
@@ -123,7 +123,7 @@
 					},
 				},
 				rules: {
-					'userInfo.userName': [{
+					'userInfo.username': [{
 						type: 'string',
 						required: true,
 						message: '请填写用户名',
@@ -159,11 +159,11 @@
 		},
 		computed:{
 			// 是否提交按钮
-			canInputUserName() {
+			canInputUsername() {
 				return !this.userModel.userInfo.userPassword.length && !this.userModel.checkPass.length && !this.userModel.verificationCode.length
 			},
 			canRetrieve(){
-				return this.userModel.userInfo.userName.length && this.isPwd && this.isCheckPwd && this.userModel.verificationCode.length
+				return this.userModel.userInfo.username.length && this.isPwd && this.isCheckPwd && this.userModel.verificationCode.length
 			},
 			isPwd() {
 				return /^.{6,20}$/.test(this.userModel.userInfo.userPassword);
@@ -173,7 +173,7 @@
 			},
 			// 发送验证码的用户名
 			canCode(){
-				return this.userModel.userInfo.userName.length 
+				return this.userModel.userInfo.username.length 
 			}
 		},
 		onReady() {
@@ -181,12 +181,12 @@
 			this.$refs.userForm.setRules(this.rules)
 		},
 		methods:{
-			async estimateUserByUserName(){
+			async estimateUserByUsername(){
 				const result = await this.$myRequest({
-					url: "/api/search/estimateUserByUserName",
+					url: "/api/search/estimateUserByUsername",
 					method: "GET",
 					data: {
-						userName: this.userModel.userInfo.userName
+						username: this.userModel.userInfo.username
 					}  
 				});
 				console.log(result)
@@ -218,7 +218,7 @@
 					url: "/api/resetUserPwd",
 					method: "PUT",
 					data: {
-						userName: this.userModel.userInfo.userName,
+						username: this.userModel.userInfo.username,
 						newPwd: this.userModel.userInfo.userPassword,
 						verificationCode : this.userModel.verificationCode
 					}  
